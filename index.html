@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hex to ASCII Converter</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+        input, textarea { width: 80%; padding: 10px; margin-top: 10px; }
+        button { padding: 10px 20px; margin-top: 10px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h2>Hex to ASCII Converter</h2>
+    <input type="text" id="hexInput" placeholder="Enter hex (e.g., 48656C6C6F)">
+    <button onclick="convertHexToAscii()">Convert</button>
+    <h3>ASCII Output:</h3>
+    <textarea id="asciiOutput" readonly></textarea>
+
+    <script>
+        function convertHexToAscii() {
+            let hex = document.getElementById("hexInput").value.trim();
+            let ascii = "";
+            
+            // Validate and Convert
+            if (hex.length % 2 !== 0) {
+                alert("Invalid Hex! Length must be even.");
+                return;
+            }
+
+            try {
+                for (let i = 0; i < hex.length; i += 2) {
+                    ascii += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
+                }
+                document.getElementById("asciiOutput").value = ascii;
+            } catch (e) {
+                alert("Invalid hex input!");
+            }
+        }
+    </script>
+</body>
+</html>
